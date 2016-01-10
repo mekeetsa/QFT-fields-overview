@@ -1,0 +1,966 @@
+\documentclass[10pt]{article}
+\usepackage{tikz,amsmath, amssymb,bm,color}
+\usepackage[margin=0cm,nohead]{geometry}
+\usepackage[active,tightpage]{preview}
+\usetikzlibrary{shapes,arrows}
+% needed for BB
+\usetikzlibrary{calc}
+
+\PreviewEnvironment{tikzpicture}
+
+\usetikzlibrary{positioning}
+\usetikzlibrary{decorations.pathreplacing}
+
+\newcommand{\bb}[2]{
+	\!\!{\tt #1}
+	\\[6pt]
+	~{\large \color{blue} #2}
+}
+\newcommand{\bbb}[3]{
+	\!\!{\tt #1}
+	\\[6pt]
+	~{\large \color{blue} #2}
+	\\[6pt]
+	~{#3}
+}
+
+\newcommand{\tr}{\mathsf{{\scriptscriptstyle T}}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\ee}{\operatorname{e}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\op}[1]{\operatorname{#1}}
+ 
+\begin{document}
+
+\begin{tikzpicture}[every text node part/.style={align=left}]
+
+\tikzset{myBox/.style={draw,anchor=north,rectangle,rounded corners=3pt, fill=white}}
+\tikzset{myBoxL/.style={draw,anchor=north,rectangle,rounded corners=3pt, fill=gray!2}}
+\tikzset{myBoxM/.style={draw,anchor=north,rectangle,rounded corners=3pt, fill=red!4}}
+\tikzset{myBoxSI/.style={draw,anchor=north,rectangle,rounded corners=3pt, fill=green!2}}
+\tikzset{myBoxI/.style={draw,anchor=north,rectangle,rounded corners=3pt, fill=yellow!5}}
+\tikzset{myBoxE/.style={draw,anchor=north,rectangle,rounded corners=3pt, fill=blue!2}}
+\tikzset{myBoxP/.style={draw,anchor=north,rectangle,rounded corners=3pt, fill=cyan!2}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \draw [yellow] (-29.5,-21) rectangle (14.5,15);
+% \draw [dashed, red] (-29.5cm,-21cm) rectangle (14.5cm,15cm);
+
+\draw (-33.3,12.2) -- (18.2,12.2);
+\draw (-33.3,-18.65) -- (18.2,-18.65);
+
+\draw (-33.3,12.2) -- (-33.3,7.2);
+\draw (-21.85,12.2) -- (-21.85,7.2);
+\draw (-9.4,12.2) -- (-9.4,7.2);
+\draw (1.7,12.2) -- (1.7,7.2);
+\draw (18.2,12.2) -- (18.2,7.2);
+
+\draw (-33.3,7.2) -- (18.2,7.2);
+
+\node [anchor=south west, color=red] at (-32.8,6.6) {
+	Symmetrized (hermitian) kinetic term:
+};
+	
+\node [anchor=south west, color=red] at (-32.8,4.35) {
+	EoM based kinetic term:
+};
+
+\draw [decorate, decoration={brace, amplitude=7pt}] (-33.1,-1.25) -- (-33.1,7.15);
+
+\node [anchor=south, color=black!10!blue, rotate=90] at (-33.25,2.95) {
+	Free theory = kinetic + opt.\;mass term
+};
+
+\draw [dashed,color=gray!50] (-32.8,2.2) -- (18.2,2.2);
+
+\node [anchor=south west, color=black!50!red] at (-32.8,1.6) {
+	Optional quadratic terms (mass and gauge fixing):
+};
+	
+\draw [color=black!50!green] (-33,-1.3) -- (1.6,-1.3);
+\draw [color=black!50!green] (12.7,-1.3) -- (18.2,-1.3);
+
+\node [anchor=south west, color=black!50!green] at (-32.8,-1.9) {
+	Possible self-interaction terms:
+};
+	
+\draw [color=black!50!blue] (-33.3,-7.05) -- (18.2,-7.05);
+
+\node [anchor=south west, color=black!50!blue] at (-32.8,-7.65) {
+	Free-field examples (with propagators):
+};
+
+\draw [color=black!50!orange] (-33.3,-13.65) -- (18.2,-13.65);
+
+\node [anchor=south west, color=orange] at (-32.8,-14.15) {
+	Possible interaction terms:
+};
+
+\node [anchor=north west, color=black] at (-32.8,-18.65) {
+	\sf Fields in QFT ~--~ by M.B.Kocic ~--~ Version 1.0 (2016-01-10)
+};
+
+\node [color=black] at (-6.8,12.85) {
+	\huge\sf Overview of the fields in QFT (FK8017 HT15)
+};
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node [anchor=center] at (-30.3,11.6) {\large\sf
+	Real scalar field
+};
+
+\node [anchor=north, text width=150] at (-30.3,11.1) {
+	Field: $\phi(x) \in \mathbb{R}$ \\[0.2em]
+	Symmetry:  O(1) (no continuous symmetries)
+};
+
+\node [myBoxL, text width=140] at (-30.3,6.6) {
+	\bb{
+		kinetic term
+		\hfill $(\mathcal{L} = \mathcal{L}^{\dagger})$
+	}{$ 
+		\mathcal{L} =
+		\frac{1}{2}  \partial_\mu\phi \, \partial^\mu\phi
+	$}
+};
+
+\node [myBoxL, text width=140] at (-30.3,4.35) {
+	\bbb{
+		kinetic term (alt)
+	}{$
+		\mathcal{L}^\prime =
+		-\frac{1}{2} \phi\, \square \phi
+	$}{$
+		\mathcal{L}^\prime = \mathcal{L} + \frac{1}{2}\partial_\mu(\phi\,\partial^\mu\phi)
+	$}
+};
+
+\node [myBoxM, text width=140] at (-30.3,1.6) {
+	\bb{
+		mass term
+	}{$
+		~~\qquad -\frac{1}{2}m^2 \, \phi^2 
+	$}
+};
+
+\node [myBoxSI, text width=140] at (-30.3,-1.9) {
+	\bb{
+		cubic term
+	}{$
+		~~\qquad - \frac{1}{3!}\mu \, \phi^3 
+	$}
+};
+
+\node [myBoxSI, text width=140] at (-30.3,-3.4) {
+	\bb{
+		quartic term
+	}{$
+		~~\qquad -\frac{1}{4!}\lambda \, \phi^4 
+	$}
+};
+
+\node [myBoxE, text width=140] at (-30.3,-7.65) {
+	\bb{
+		Massive neutral spin-0
+	}{$ 
+		\mathcal{L} = \frac{1}{2} \phi\, (-\square - m^2) \phi
+	$}
+};
+
+\node [myBoxP, text width=140] at (-30.3,-9.15) {
+	\bb{
+		Meson propagator:
+	}{\normalsize$
+		\ii\Delta_\mathrm{F}(k) = \displaystyle
+		\frac{\ii}{k^2-m^2+\ii\varepsilon^+}
+	$}
+};
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node [anchor=center] at (-24.8,11.6) {\large\sf
+	Complex scalar field
+};
+
+\node [anchor=north, text width=150] at (-24.8,11.1) {
+	Field dofs: $\phi(x), \phi^\dagger(x) \in \mathbb{C}$ \\[0.2em]
+	Symmetry: U(1) $\simeq$ SO(2) = mass degeneracy of the real doublet
+};
+
+\node [myBoxL, text width=140] at (-24.8,6.6) {
+	\bb{
+		kinetic term
+		\hfill $(\mathcal{L} = \mathcal{L}^{\dagger})$
+	}{$ 
+		\mathcal{L} =
+		\partial_\mu\phi^{\dagger} \, \partial^\mu\phi 
+	$}
+};
+
+\node [myBoxL, text width=140] at (-24.8,4.35) {
+	\bbb{
+		kinetic term (alt)
+		\hfill $(\mathcal{L}^{\prime} \ne \mathcal{L}^{\prime\dagger})$
+	}{$ 
+		\mathcal{L}^\prime =
+		- \phi^\dagger\, \square \phi
+	$}{$
+		\mathcal{L}^\prime = \mathcal{L} + \partial_\mu(\phi^\dagger\,\partial^\mu\phi)
+	$}
+};
+
+\node [myBoxM, text width=140] at (-24.8,1.6) {
+	\bb{
+		mass term
+	}{$
+		~~\qquad - m^2 \, \phi^\dagger\phi 
+	$}
+};
+
+\node [myBoxSI, text width=140] at (-24.8,-1.9) {
+	\bb{
+		cubic term
+	}{$
+		\qquad -\mu \, \phi^\dagger (\phi^\dagger+\phi) \phi 
+	$}
+};
+
+\node [myBoxSI, text width=140] at (-24.8,-3.4) {
+	\bb{
+		quartic term
+	}{$
+		~~~\qquad -\lambda \, (\phi^\dagger\phi)^2 
+	$}
+};
+
+\node [myBoxE, text width=140] at (-24.8,-7.65) {
+	\bb{
+		Massive charged spin-0 / KGF
+	}{$ 
+		\mathcal{L} = \phi^\dagger (-\square - m^2) \phi
+	$}
+};
+
+\node [myBoxP, text width=140] at (-24.8,-9.15) {
+	\bb{
+		Meson propagator:
+	}{\normalsize$
+		\ii\Delta_\mathrm{F}(k) = \displaystyle\frac{\ii}{k^2-m^2+\ii\varepsilon^+}
+	$}
+};
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node [anchor=center] at (-18.8,11.6) {\large\sf~~~~~~~~
+	Spinor field\\ Two-component (Weyl) spinor field
+};
+
+\node [anchor=north, text width=160] at (-18.8,11.1) {
+	Field dofs: $\chi_a(x)\in\mathbb{C}^2\,+\,$hc\\[0.2em]	Symmetry: O(1)
+};
+
+\draw [dashed,fill=white,rounded corners=6pt] (-21.9205,-3.6952) rectangle (-9.4342,-13.1069);
+
+\node [text width=160] at (-18.8,-5.65) {
+    \begin{minipage}{\textwidth}
+    	\begin{gather}
+    		\nonumber \Psi_\mathrm{M}(x) = \begin{pmatrix}
+    			\chi_a(x)\\
+    			\overline{\chi}^{\dot{a}}(x)
+    		\end{pmatrix}\!,~ 
+    		\Psi_\mathrm{M}^\dagger = \begin{pmatrix}
+    			\overline{\chi}_{\dot{a}} \\
+    			\chi_a
+    		\end{pmatrix}^{\!\!\!\tr}\!,
+		\\
+    	\nonumber \overline{\Psi}_\mathrm{M} = \Psi_\mathrm{M}^\dagger \beta 
+    		= \begin{pmatrix}
+    			\chi_a \\
+    			\overline{\chi}_{\dot{a}}
+    		\end{pmatrix}^{\!\!\!\tr}
+    	\end{gather}
+    \end{minipage}
+};
+
+\node [myBoxL, text width=160] at (-18.8,6.6) {
+	\bb{
+		kinetic term (alt)
+		\hfill $(\mathcal{L} = \mathcal{L}^{\dagger})$
+	}{$
+		\mathcal{L} =
+		\frac{1}{2}\!\left(
+		\chi^a \,\mathrm{i}\partial_{a\dot{a}} \overline{\chi}^{\dot{a}} 
+		+ \overline{\chi}_{\dot{a}} \,\mathrm{i}\overline{\partial}^{\dot{a}a}\chi_a 
+		\right) 
+	$}
+};
+
+\node [myBoxL, text width=160] at (-18.8,4.35) {
+	\bb{
+		kinetic term
+		\hfill $(\mathcal{L}^\prime \ne \mathcal{L}^{\prime\dagger})$
+	}{$
+		\mathcal{L}^{\prime} =
+		\chi^a \,\mathrm{i}\partial_{a\dot{a}} \overline{\chi}^{\dot{a}}
+	$}
+};
+
+\node [myBoxM, text width=160] at (-18.8,1.6) {
+	\bbb{
+		mass term
+	}{$
+		~\quad - \frac{1}{2} \big(  m \chi^a\chi_a 
+		+ m^* \overline{\chi}_{\dot{a}}\overline{\chi}^{\dot{a}}
+		\big)
+	$}{$ 
+		-\frac{1}{2} m \! \big(\chi^a\chi_a 
+		+ \overline{\chi}_{\dot{a}}\overline{\chi}^{\dot{a}} 
+		\big)
+		\hfill \mathrm{for}\ m=m^*
+	$}
+};
+
+\node [myBoxE, text width=160] at (-18.8,-7.65) {
+	\bb{
+		Majorana Lagrangian
+		\hfill $(\mathcal{L}\ne\mathcal{L}^{\dagger})$
+	}{$
+		\mathcal{L} = 
+		\overline{\Psi}_\mathrm{M} ( \ii \gamma^\mu \partial_\mu - m) \Psi_\mathrm{M}
+	$}
+};
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node [anchor=center] at (-12.55,11.6) {\large\sf~~~~~~~
+	Bispinor field \\ Four-component spinor field
+};
+
+\node [anchor=north, text width=160] at (-12.55,11.1) {
+	Field dofs: $\chi_a(x),\psi_a(x)\in\mathbb{C}^2\,+\,$hc \\[0.2em]
+	Symmetry: U(1) $\simeq$ SO(2) = mass degeneracy of the 2-spinor doublet
+};
+
+\node [text width=180] at (-12.55,-5.4) {
+    \begin{minipage}{\textwidth}
+    	\begin{gather}
+    		\nonumber \Psi(x) = \begin{pmatrix}
+    			\chi_a(x)\\
+    			\overline{\psi}^{\dot{a}}(x)
+    		\end{pmatrix}\!,~ 
+    		\Psi^\dagger = \begin{pmatrix}
+    			\overline{\chi}_{\dot{a}} \\
+    			\psi^a
+    		\end{pmatrix}^{\!\!\!\tr}\!,
+		\\
+    	\nonumber \overline{\Psi} = \Psi^\dagger \beta 
+    		= \begin{pmatrix}
+    			\psi^a \\
+    			\overline{\chi}_{\dot{a}}
+    		\end{pmatrix}^{\!\!\!\tr}\!,
+    	\\
+		\nonumber \gamma^\mu = \begin{pmatrix}
+    			0 & \sigma^\mu_{a\dot{b}} \\
+    			\overline{\sigma}^{\mu \dot{a}b} & 0
+    		\end{pmatrix}\!,\ 
+    		\beta = \begin{pmatrix}
+    			0 & \delta{}_a{}^{b} \\
+    			\delta{}^{\dot{a}}{}_{\dot{b}} & 0
+    		\end{pmatrix}    		
+    	\end{gather}
+    \end{minipage}
+};
+
+\node [myBoxL, text width=160] at (-12.55,6.6) {
+	\bb{
+		kinetic term (alt)
+		\hfill $(\mathcal{L} = \mathcal{L}^{\dagger})$
+	}{$
+		\mathcal{L} =
+		\psi^a \,\mathrm{i}\partial_{a\dot{a}} \overline{\psi}^{\dot{a}} 
+		+ \overline{\psi}_{\dot{a}} \,\mathrm{i}\overline{\partial}^{\dot{a}a}\psi_a$\\$ 
+		\ \qquad +\chi^a \,\mathrm{i}\partial_{a\dot{a}} \overline{\chi}^{\dot{a}} 
+		+ \overline{\chi}_{\dot{a}} \,\mathrm{i}\overline{\partial}^{\dot{a}a}\chi_a 
+	$}
+};
+
+\node [myBoxL, text width=160] at (-12.55,4.35) {
+	\bb{
+		kinetic term
+		\hfill $(\mathcal{L}^\prime \ne \mathcal{L}^{\prime\dagger})$
+	}{$ 
+		\mathcal{L}^\prime =
+		\psi^a \,\mathrm{i}\partial_{a\dot{a}} \overline{\psi}^{\dot{a}} 
+		+ \overline{\chi}_{\dot{a}} \,\mathrm{i}\overline{\partial}^{\dot{a}a}\chi_a 
+	$}
+};
+
+\node [myBoxM, text width=160] at (-12.55,1.6) {
+	\bbb{
+		mass term
+	}{$
+		~\quad - \big( m \psi^a\chi_a 
+		+ m^* \overline{\chi}_{\dot{a}}\overline{\psi}^{\dot{a}} \big)
+	$}{$
+		- m \! \big(\psi^a\chi_a 
+		+ \overline{\chi}_{\dot{a}}\overline{\psi}^{\dot{a}} 
+		\big) 
+		\hfill \mathrm{for}\ m=m^*
+	$}
+};
+
+\node [myBoxE, text width=160] at (-12.55,-7.65) {
+	\bbb{
+		Dirac Lagrangian
+		\hfill $(\mathcal{L}\ne\mathcal{L}^{\dagger})$
+	}{$
+		\mathcal{L} = 
+		\overline{\Psi} ( \ii \gamma^\mu \partial_\mu - m) \Psi
+	$}{$
+		\mathcal{L}^\dagger = 
+		\ii\partial_\mu\overline{\Psi} ( \gamma^\mu  - m) \Psi
+	$\\[3pt]~$
+		\mathcal{L}^\prime = \op{Re}\mathcal{L} 
+		= \frac{1}{2}\overline{\Psi} \, \ii \gamma^\mu
+		\overleftrightarrow{\partial}_\mu\Psi
+		- m \overline{\Psi}\Psi
+	$\\[3pt]~$
+		\phantom{\mathcal{L}^\prime} = \mathcal{L} 
+		- \frac{1}{2}\ii\partial_\mu( \overline{\Psi} \gamma^\mu \Psi )
+		= \mathcal{L}^{\prime\dagger}
+	$}
+};
+
+\node [myBoxP, text width=160] at (-12.55,-11.15) {
+	\bb{
+		Dirac fermion propagator:
+	}{$
+		~~~~ \ii S_\mathrm{F}(p) = \displaystyle
+		\frac{\ii (\gamma^\mu p_\mu + m)}{p^2-m^2+\ii\varepsilon^+}
+	$}
+};
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node [anchor=center] at (-6.55,11.6) {\large\sf
+	Real vector field
+};
+
+\node [anchor=north, text width=140] at (-6.55,11.1) {
+	Field: $A_\mu(x) \in \mathbb{R}^4$ \\[0.2em]
+	Gauge symmetry (if free)
+};
+
+\node [myBoxL, text width=140] at (-6.55,6.6) {
+	\bbb{
+		kinetic term
+		\hfill $(\mathcal{L} = \mathcal{L})$
+	}{$ 
+		\mathcal{L} =
+		-\frac{1}{4}  F_{\mu\nu}F^{\mu\nu}
+	$}{\qquad where $
+		F_{\mu\nu} = 2\partial_{[\mu}A_{\nu]}
+	$}
+};
+
+\node [myBoxL, text width=140] at (-6.55,4.35) {
+	\bbb{
+		kinetic term (alt)
+	}{$
+		\mathcal{L}^\prime =
+		\frac{1}{2} A^\mu \big( g_{\mu\nu}\square - \partial_\mu \partial_\nu \big) A^\nu
+	$}{$
+		\mathcal{L}^\prime = \mathcal{L} + \frac{1}{2} \partial_\mu(A_\nu F^{\mu\nu})
+	$}
+};
+
+\node [myBoxM, text width=140] at (-6.55,1.6) {
+	\bb{
+		mass term
+	}{$
+		~\qquad + \frac{1}{2}m^2 \, A_\mu A^\mu
+	$}
+};
+
+\node [myBoxM, text width=140] at (-6.55,0.1) {
+	\bb{
+		gauge fixing term
+	}{$
+		~\qquad - \frac{1}{2}\zeta \, (\partial_\mu A^\mu)^2
+	$}
+};
+
+\node [myBoxSI, text width=140] at (-6.55,-1.65) {
+	\bb{
+		mixed term
+	}{$
+		\qquad - (A_\mu A^\mu)(\partial_\nu A^\nu)
+	$}
+};
+
+\node [myBoxSI, text width=140] at (-6.55,-3.15) {
+	\bb{
+		quartic term
+	}{$
+		~~~\qquad - (A_\mu A^\mu)^2
+	$}
+};
+
+\node [myBoxSI, anchor=north west, text width=295.3] at (-9.09,-4.65) {
+	Note: The self-interaction terms for vector fields lead to inconsistencies 
+	unless their coupling constants are precisely chosen on the basis of a 
+	special type of symmetry, which must involve several vector fields. 
+	This symmetry underlies the non-Ahelian gauge theories. 
+};
+
+\node [myBoxE, text width=180] at (1.05,-7.65) {
+	\bb{
+		Massive neutral spin-1 (Proca)
+	}{$ 
+		\mathcal{L} = \frac{1}{2} A^\mu \Big( g_{\mu\nu}(\square + m^2) - \partial_\mu \partial_\nu \Big) A^\nu	$}
+};
+
+\node [myBoxP, text width=180] at (-5.8,-9.4) {
+	\bb{
+		Photon propagator:
+	}{$
+		~~~ \ii D^{\mu\nu}_\mathrm{F}(k) = \displaystyle 
+		\frac{-\ii \big( g^{\mu\nu} - \frac{\zeta-1}{\zeta} k^\mu k^\nu \big) }{k^2+\ii\varepsilon^+}
+	$}
+};
+
+\node [anchor=north west, text width=200] at (-9.05,-11.4) {
+	$\zeta=1$ : Feynman gauge ($\xi=\zeta^{-1}=1$) \\
+	$\zeta\to\infty$ : Landau gauge  ($\xi=\zeta^{-1}=0$) \\
+};
+
+\node [myBoxE, text width=180] at (-5.8,-7.65) {
+	\bb{
+		Massless neutral spin-1 (Maxwell)
+	}{$ 
+		\mathcal{L} = \frac{1}{2} A^\mu \Big( g_{\mu\nu} \square - (1-\zeta)\partial_\mu \partial_\nu \Big) A^\nu
+	$}
+};
+
+\node [myBoxP, text width=180] at (1.05,-9.4) {
+	\bb{
+		Massive vector propagator:
+	}{$
+		~~~ \ii D^{\mu\nu}_\mathrm{F}(k) = \displaystyle 
+		\frac{-\ii \big( g^{\mu\nu} - \frac{1}{m^2} k^\mu k^\nu \big)}{k^2-m^2+\ii\varepsilon^+}
+	$}
+};
+
+\node [myBoxE, text width=229] at (1.95,-11.4) {
+	\bb{
+		St\"uckelberg Lagrangian 
+	}{$ 
+		\mathcal{L} = 
+		- \frac{1}{2}  F_{\mu\nu}F^{\mu\nu}
+		+ \frac{1}{2}(\partial_\mu \phi+m A_\mu)(\partial^\mu \phi+m A^\mu) 
+	$\\[5pt]
+	\normalsize\color{black}Gauge-fixing $\phi=0$, yields the Proca action.
+	}
+};
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node [anchor=center] at (-1.05,11.6) {\large\sf
+	Complex vector field
+};
+
+\node [anchor=north, text width=140] at (-1.05,11.1) {
+	Field dofs: $A_\mu(x), A^\dagger_\mu(x) \in \mathbb{C}^4$ \\[0.2em]
+	Gauge symmetry (if free)
+};
+
+\node [myBoxL, text width=140] at (-1.05,6.6) {
+	\bbb{
+		kinetic term
+		\hfill $(\mathcal{L} = \mathcal{L}^\dagger)$
+	}{$ 
+		\mathcal{L} =
+		-\frac{1}{2}  F^\dagger_{\mu\nu}F^{\mu\nu}
+	$}{\qquad where $
+		F_{\mu\nu} = 2\partial_{[\mu}A_{\nu]}
+	$}
+};
+
+\node [myBoxL, text width=140] at (-1.05,4.35) {
+	\bbb{
+		kinetic term (alt)
+		\hfill $(\mathcal{L}^{\prime} \ne \mathcal{L}^{\prime\dagger})$
+	}{$ 
+		\mathcal{L}^\prime =
+		 A^{\dagger\mu} \big( g_{\mu\nu}\square - \partial_\mu \partial_\nu \big) A^\nu
+	$}{$
+		\mathcal{L}^\prime = \mathcal{L} + \partial_\mu(A^\dagger_\nu F^{\mu\nu})
+	$}
+};
+
+\node [myBoxM, text width=140] at (-1.05,1.6) {
+	\bb{
+		mass term
+	}{$
+		~~~\qquad +m^2 \, A^\dagger_\mu A^\mu
+	$}
+};
+
+\node [myBoxM, text width=140] at (-1.05,0.1) {
+	\bb{
+		gauge fixing term
+	}{$
+		~\quad -\zeta \, (\partial_\mu A^{\dagger\mu})(\partial_\nu A^\nu)
+	$}
+};
+
+
+\node [myBoxSI, text width=140] at (-1.05,-1.65) {
+	\bb{
+		mixed terms (+hc)
+	}{$
+		\qquad - (A^\dagger_\mu A^\mu)(\partial_\nu A^\nu)
+	$}
+};
+
+\node [myBoxSI, text width=140] at (-1.05,-3.15) {
+	\bb{
+		quartic term
+	}{$
+		~~~\qquad - (A^\dagger_\mu A^\mu)^2
+	$}
+};
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node [anchor=center] at (4.45,11.6) {\large\sf
+	Real scalar multiplet
+};
+
+\node [anchor=north, text width=140] at (4.45,11.1) {
+	$\phi_i(x) \in \mathbb{R},\ i=1,...,n$ \\[0.2em]
+	Symmetries depend on mass degeneracies (at most O($n$)).
+};
+
+\node [myBoxM, anchor=north west, text width=297.8] at (1.87,-4.2) {
+    Note: There can be other internal symmetries 
+    (in addition to those coming out of mass term degeneracy).
+};
+
+\node [text width=140] at (4.45,8.35) {\vspace{-1.5em}
+    \begin{minipage}{\textwidth}
+    	\[
+    		\Phi(x) = \begin{pmatrix}
+    			\phi_1(x)\\
+    			\vdots\\
+    			\phi_n(x)
+    		\end{pmatrix} \in \mathbb{R}^n
+    	\]
+    \end{minipage}
+};
+
+
+\node [myBoxL, text width=140] at (4.45,6.6) {
+	\bb{
+		kinetic term
+		\hfill $(\mathcal{L} = \mathcal{L}^{\dagger})$
+	}{$ 
+		\mathcal{L} =
+		\frac{1}{2}  \partial_\mu\Phi^\tr \, \partial^\mu\Phi
+	$}
+};
+
+\node [myBoxL, text width=140] at (4.45,4.35) {
+	\bbb{
+		kinetic term (alt)
+	}{$
+		\mathcal{L}^\prime =
+		-\frac{1}{2} \Phi^\tr\,\square \Phi
+	$}{$
+		\mathcal{L}^\prime = \mathcal{L} + \frac{1}{2}\partial_\mu(\Phi\,\partial^\mu\Phi)
+	$}
+};
+
+\node [myBoxM,text width=140] at (4.45,1.6) {
+	\bb{
+		quadric term
+	}{$
+		~~~\qquad - \frac{1}{2}m^2 \, \Phi^\tr \Phi
+	$}
+};
+
+\node [myBoxM, anchor=north, text width=140] at (4.45,0.1) {
+    \begin{minipage}{\textwidth}
+	For the general mass term,\vspace{-0.5em}
+	\[- {\textstyle \frac{1}{2}} \, \Phi^\tr M \Phi,\vspace{-0.5em}\]
+	where $M$ is a positive definite real matrix with $k$ 
+	distinct eigenvalues $m_i$ each with degeneracy $n_i$
+	($k \le n=\sum n_i$),
+	the internal symmetry group is,\vspace{-0.5em}
+	\[ \op{O}(n_1)\times\dots\times \op{O}(n_k).\]
+	\end{minipage}
+};
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node [anchor=center] at (9.95,11.6) {\large\sf
+	Complex scalar multiplet
+};
+
+\node [anchor=north, text width=140] at (9.95,11.1) {
+	$\phi_i(x), \phi_i^\dagger(x) \in \mathbb{C},\ i=1,...,n$ \\[0.2em]
+	Symmetries depend on mass degenaracies (at most U($n$)).
+};
+
+\node [text width=140] at (9.95,8.35) {\vspace{-1.5em}
+    \begin{minipage}{\textwidth}
+    	\[
+    		\Phi(x) = \begin{pmatrix}
+    			\phi_1(x)\\
+    			\vdots\\
+    			\phi_n(x)
+    		\end{pmatrix} \in \mathbb{C}^n
+    	\]
+    \end{minipage}
+};
+
+\node [myBoxL, text width=140] at (9.95,6.6) {
+	\bb{
+		kinetic term
+		\hfill $(\mathcal{L} = \mathcal{L}^{\dagger})$
+	}{$ 
+		\mathcal{L} =
+		\partial_\mu\Phi^{\dagger} \, \partial^\mu\Phi 
+	$}
+};
+
+\node [myBoxL, text width=140] at (9.95,4.35) {
+	\bbb{
+		kinetic term
+		\hfill $(\mathcal{L}^{\prime} \ne \mathcal{L}^{\prime\dagger})$
+	}{$ 
+		\mathcal{L}^\prime =
+		- \Phi^\dagger\, \square \Phi
+	$}{$
+		\mathcal{L}^\prime = \mathcal{L} + \partial_\mu(\Phi^\dagger\,\partial^\mu\Phi)
+	$}
+};
+
+\node [myBoxM, text width=140] at (9.95,1.6) {
+	\bb{
+		quadratic term
+	}{$
+		~~~\qquad - m^2 \, \Phi^\dagger\Phi 
+	$}
+};
+
+\node [myBoxM, anchor=north, text width=140] at (9.95,0.1) {
+    \begin{minipage}{\textwidth}
+	For the general mass term,\vspace{-0.5em}
+	\[- \Phi^\dagger M \Phi,\vspace{-0.5em}\]
+	where $M$ is a positive definite Hermitian matrix with $k$ 
+	distinct eigenvalues $m_i$ each with degeneracy $n_i$
+	($k \le n=\sum n_i$),
+	the internal symmetry group is,\vspace{-0.5em}
+	\[ \op{U}(n_1)\times\dots\times \op{U}(n_k).\]
+	\end{minipage}
+};
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node [anchor=center] at (15.2,11.6) {\large\sf
+	Real vector multiplet
+};
+
+\node [anchor=north, text width=140] at (15.2,11.1) {
+	Fields: $A^i_\mu(x) \in \mathbb{R}^4$, $i=1,...,n$ \\[0.2em]
+	~\\ To do... \\ (this column is not complete!)
+};
+
+\node [myBoxL, text width=140] at (15.45,6.6) {
+	\bbb{
+		kinetic term
+		\hfill $(\mathcal{L} = \mathcal{L}^\dagger)$
+	}{$ 
+		\mathcal{L} =
+		-\frac{1}{4} G^i_{\mu\nu}G^{i\,\mu\nu}
+	$}{$
+    	G^i_{\mu \nu} = 2 \partial_{[\mu} A^i_{\nu]} + g f^{ijk} A^j_\mu A^k_\nu
+	$}
+};
+
+\node [myBoxM, text width=140] at (15.45,1.6) {
+	\bb{
+		mass term
+	}{$
+		\qquad +\, \frac{1}{2}m^2 \, A^i_\mu A^{i\,\mu}
+	$}
+};
+
+\node [myBoxM, text width=140] at (15.45,0.1) {
+	\bb{
+		gauge fixing term
+	}{$
+		\quad - \frac{1}{2}\zeta \, (\partial_\mu A^{i\,\mu})(\partial_\nu A^{i\,\nu})
+	$}
+};
+
+\node [myBoxP, text width=140] at (15.45,-1.9) {
+	\bbb{
+		ghost term for QCD
+	}{$
+		\quad \partial^\mu \eta_i [\partial_\mu \tilde{\eta}_i 
+		+ g_s f^{ijk} \tilde{\eta}^j A^k_\mu]
+	$}{$
+    	= \partial_\mu{\tilde{\eta}}^i \partial^\mu \eta^i + g_s f^{ijk}(\partial^\mu{\tilde{\eta}}^i)A_\mu^j\eta^k
+	$}
+};
+
+\node [myBoxP, text width=140] at (15.45,-4.15) {
+	\bb{
+		ghost term for QED
+	}{$
+		\qquad\qquad \partial_\mu \eta\,\partial^\mu \tilde{\eta}
+	$}
+};
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\draw (-22.3,-16.9) .. controls (-18.8,-18.4) and (-11.3,-17.9) .. (-8.8,-17.4);
+\draw  plot[smooth, tension=.7] coordinates {(-10.3,-14.9) (-8.8,-14.9)};
+\draw  plot[smooth, tension=.7] coordinates {(-27.8595,-14.6812) (-20.6013,-14.7051) (-14.4218,-16.8653)};
+
+\node [myBoxI, text width=140] at (-30.3,-14.4) {
+	\bb{
+		Yukawa coupling
+	}{$ 
+		\qquad\quad 
+		-g \, \overline{\Psi}\Psi \, \phi 
+	$}
+};
+
+\node [myBoxI, text width=140] at (-24.8,-15.15) {
+	\bb{
+		Scalar QED
+	}{$ 
+		\qquad\quad 
+		+e \, \phi\partial^\mu\phi^\dagger \, A_\mu
+	$\\[5pt]
+	$
+		\qquad\quad 
+		+e \, (\phi^\dagger \phi)(A_\mu A^\mu)
+	$}
+};
+
+\node [myBoxI, text width=140] at (-12.55,-14.4) {
+	\bb{
+		(Spinor) QED
+	}{$ 
+		\qquad\quad 
+		-e \, \overline{\Psi} \gamma^\mu \Psi \, A_\mu
+	$}
+};
+
+\node [myBoxI, text width=140] at (-12.55,-15.9) {
+	\bb{
+		Yukawa coupling
+	}{$ 
+		\qquad\quad 
+		-g \, \overline{\Psi}\Psi \, \phi 
+	$}
+};
+
+
+\node [myBoxI, text width=140] at (-6.55,-14.4) {
+	\bb{
+		(Spinor) QED
+	}{$ 
+		\qquad\quad 
+		-e \, \overline{\Psi} \gamma^\mu \Psi \, A_\mu
+	$}
+};
+
+\node [myBoxI, text width=140] at (-6.55,-15.9) {
+	\bb{
+		Scalar QED
+	}{$ 
+		\qquad\quad 
+		+e \, \phi\partial^\mu\phi^\dagger \, A_\mu
+	$\\[5pt]
+	$
+		\qquad\quad 
+		+e \, (\phi^\dagger \phi)(A_\mu A^\mu)
+	$}
+};
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\draw [-triangle 45, red] (-30.55,9.35) -- (-24.8,9.35) node[midway,below,black] {
+    \begin{minipage}{180pt}
+    Complex field from a real doublet ${\phi_1,\phi_2}$:\vspace{-0.8em}
+        \begin{align}
+            \nonumber \phi(x) &= {\textstyle\frac{1}{\sqrt2}} ( \phi_1(x) + \ii \phi_2(x) ) \\
+            \nonumber \phi^\dagger(x) &= {\textstyle\frac{1}{\sqrt2}} ( \phi_1(x) - \ii \phi_2(x) )
+        \end{align}
+    \end{minipage}
+};
+
+\draw [-triangle 45, red] (-18.8,9.35) -- (-12.55,9.35) node[midway,below,black] {
+	\begin{minipage}{180pt}
+	Bispinor from a 2-spinor doublet ${\chi_{1a},\chi_{2a}}$:\vspace{-0.8em}
+		\begin{align}
+            \nonumber \chi_a(x) &= {\textstyle\frac{1}{\sqrt2}} ( \chi_{1a}(x) + \ii \chi_{2a}(x) ) \\
+            \nonumber \psi_a(x) &= {\textstyle\frac{1}{\sqrt2}} ( \chi_{1a}(x) - \ii \chi_{2a}(x) )
+        \end{align}
+    \end{minipage}
+};
+
+\draw [dashed, square-triangle 45, red] (-15.3,-4.65) -- (-17.8,-4.65)  node[midway,above,black] {
+	$\psi_a := \chi_a$
+} -- (-18.5939,-4.8662);
+
+\node [anchor=north west,text width=400] at (3.7,-14.15) {
+\textbf{Prescription} for building a consistent Lagrangian:\\[5pt]
+
+\quad 1. The Lagrangian must be real modulo total derivative (required by CPT invariance).\\
+\quad 2. All the added terms must be Lorentz-invariant.\\
+\quad 3. All the added terms must be of dimension less or equal $\mathsf{M}^{4}$.\\[5pt]
+
+N.b. Any interaction of higher dimension than $\mathsf{M}^{4}$
+leads to a nonrenormalizable theory. Hence, ignoring all the constants, 
+the dimension of any term must be at most $\mathsf{M}^{4}$
+since the dimension of a Lagrangian density is $\mathsf{M}^{4}$.
+\\[5pt]\color{blue}\large
+$[S]=\mathsf{M}^{0}$,
+ $[\mathcal{L}]=\mathsf{M}^{4}$,
+ $[\partial_{\mu}]=[\phi]=[A_{\mu}]=\mathsf{M}^{1}$,
+ $[\Psi]=[\chi_{a}]=\mathsf{M}^{3/2}$,
+ $[F_{\mu\nu}]=\mathsf{M}^{2}$.
+};
+
+\node [anchor=north west,text width=250] at (9.2,-8.4) {
+\textbf{Legend}:\\[5pt]
+$g_{\mu\nu}$ : Minkowski metric, $\op{diag}(1,-1,-1,-1)$ \\
+$\mu,\nu,...$ : (World) tensor indices \\[3pt]
+$\alpha,\beta,...$ : Four-component (Dirac) spinor indices \\
+$a,b,...,\dot{a},\dot{b},...$ : Two-component (Weyl) spinor indices \\[3pt]
+$\partial_{a\dot{a}} := \sigma^\mu_{a\dot{a}} \partial_\mu$,~~
+$\overline{\partial}^{\dot{a}a} := \overline{\sigma}^{\mu\,\dot{a}a} \partial_\mu$ \\
+};
+
+
+\draw [-triangle 45, red] (-18.8,-0.9) -- (-18.8,-3.4);
+\draw [-triangle 45, red] (-12.55,-0.9) -- (-12.55,-3.4);
+
+\end{tikzpicture}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
