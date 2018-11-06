@@ -2,4 +2,4 @@
 
 Overview of the fields in QFT.
 
-Note: there are two PDF sizes: 408 x 308 mm and 522 x 328 mm.
+Note: there are two PDF sizes: 408 x 308 mm (compact, without multiplets) and 522 x 328 mm (normal, with multiplets).
